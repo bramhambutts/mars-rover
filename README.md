@@ -10,3 +10,11 @@ An example to move the rover diagonally by two squares would be:
 - `5 5`
 - `0 0 N`
 - `MLMRMLM`
+
+## Importing the project
+
+All libraries are included in the `requirements.txt` file, and can be installed via `pip install -r requirements.txt`. The program can then be run by `python main.py`.
+
+## How it works
+
+The plateau and rovers are all managed by `MissionControl`. The `InputParser` manages how input is handled, and will output appropriate objects depending on the input, being either `PlateauSize`, `RoverPosition`, or a list of `Instructions`.
