@@ -1,37 +1,45 @@
+from src.rover_position import RoverPosition
 import copy
+    
+
+class Rover:
 
 
-class RoverPosition:
-
-
-    def __init__(self, x, y, direction):
-        self.__x = x
-        self.__y = y
-        self.__direction = direction
+    def __init__(self, position):
+        self.__position = position
+        self.__new_position = None
     
 
     @property
-    def x(self):
-        return copy.copy(self.__x)
-
-
-    @property
-    def y(self):
-        return copy.copy(self.__y)
+    def position(self):
+        return self.__position.coordinate
     
 
     @property
-    def direction(self):
-        return copy.copy(self.__direction)
+    def new_position(self):
+        if self.__new_position != None:
+            return self.__new_position.coordinate
+        else:
+            return self.position
     
 
-    def __eq__(self, other):
-        test_x = self.__x == other.x
-        test_y = self.__y == other.y
-        test_dir = self.__direction == other.direction
+    @property
+    def facing(self):
+        return self.__position.direction
+    
 
-        return test_x and test_y and test_dir
+    def rotate(self, direction):
+        self.__position.rotate(direction)
+
+    
+    def move(self):
+        self.__new_position = self.__position.move()
+
+    
+    def confirm_movement(self):
+        self.__position = copy.copy(self.__new_position)
+        self.__new_position = None
     
 
     def __repr__(self):
-        return f'<RoverPosition object: {self.__x} {self.__y} {self.__direction.value}>'
+        return f'<Rover object: {self.position[0]} {self.position[1]} {self.facing.value}>'

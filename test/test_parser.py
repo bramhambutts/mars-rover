@@ -1,6 +1,6 @@
 from src.input_layer.parser import InputParser, InputError
-from src.plateau import PlateauSize
-from src.rover import RoverPosition
+from src.plateau_size import PlateauSize
+from src.rover_position import RoverPosition
 from src.enums import Instructions, CompassDirections, InputType
 import pytest
 

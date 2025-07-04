@@ -12,7 +12,7 @@ class CompassDirections(Enum):
     EAST = 'E'
     SOUTH = 'S'
     WEST = 'W'
-
+       
 
 class InputType(Enum):
     PLATEAU = 0

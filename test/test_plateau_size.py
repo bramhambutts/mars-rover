@@ -1,5 +1,5 @@
-from src.plateau import PlateauSize
-from src.rover import RoverPosition
+from src.plateau_size import PlateauSize
+from src.rover_position import RoverPosition
 from src.enums import CompassDirections
 
 
@@ -31,6 +31,7 @@ def test_PlateauSize_detects_RoverPosition_in_true():
     test_rover = RoverPosition(2, 3, CompassDirections.NORTH)
 
     assert test_rover in test_plateau
+    assert (2, 3) in test_plateau
 
 
 def test_PlateauSize_detects_RoverPosition_in_false():
@@ -38,3 +39,16 @@ def test_PlateauSize_detects_RoverPosition_in_false():
     test_rover = RoverPosition(6, 2, CompassDirections.NORTH)
 
     assert (test_rover in test_plateau) == False
+    assert ((6, 2) in test_plateau) == False
+
+
+def test_PlateauSize_detects_edge():
+    test_plateau = PlateauSize(5, 5)
+
+    assert (0, 2) in test_plateau
+
+
+def test_PlateauSize_detects_top_corner():
+    test_plateau = PlateauSize(5, 5)
+
+    assert (5, 5) in test_plateau
