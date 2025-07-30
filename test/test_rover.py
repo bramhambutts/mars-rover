@@ -28,7 +28,7 @@ class TestRoverBasics:
     def test_Rover_move_is_cached(self):
         test_rover = Rover(RoverPosition(0, 0, CompassDirections.NORTH))
 
-        test_rover.move()
+        test_rover.cache_movement()
 
         assert test_rover.position == (0, 0)
         assert test_rover.new_position == (0, 1)
@@ -49,7 +49,7 @@ class TestRoverMovement:
     def test_Rover_moves_once(self, x_in, y_in, direction, x_out, y_out):
         test_rover = Rover(RoverPosition(x_in, y_in, direction))
 
-        test_rover.move()
+        test_rover.cache_movement()
         test_rover.confirm_movement()
 
         assert test_rover.position == (x_out, y_out)
@@ -67,7 +67,7 @@ class TestRoverMovement:
         test_rover = Rover(RoverPosition(x_in, y_in, direction))
 
         for step in range(steps):
-            test_rover.move()
+            test_rover.cache_movement()
             test_rover.confirm_movement()
         
         assert test_rover.position == (x_out, y_out)

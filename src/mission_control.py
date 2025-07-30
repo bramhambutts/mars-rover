@@ -66,7 +66,7 @@ class MissionControl:
         
         current = self.__rovers[self.__current_rover]
         if movement == Instructions.MOVE:
-            current.move()
+            current.cache_movement()
             if current.new_position in self.__plateau:
                 current.confirm_movement()
         else:

@@ -32,7 +32,7 @@ class Rover:
         self.__position.rotate(direction)
 
     
-    def move(self):
+    def cache_movement(self):
         self.__new_position = self.__position.move()
 
     
