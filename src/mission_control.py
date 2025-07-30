@@ -74,4 +74,4 @@ class MissionControl:
 
     
     def switch_rover(self, rover_name):
-        pass
+        raise NotImplementedError
