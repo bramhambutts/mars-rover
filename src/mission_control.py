@@ -19,7 +19,7 @@ class MissionControl:
 
     @property
     def current_facing(self):
-        if self.__current_rover != None:
+        if self.__current_rover is not None:
             return self.__rovers[self.__current_rover].facing
         else:
             raise ControlError
@@ -27,7 +27,7 @@ class MissionControl:
 
     @property
     def current_position(self):
-        if self.__current_rover != None:
+        if self.__current_rover is not None:
             return self.__rovers[self.__current_rover].position
         else:
             raise ControlError
@@ -61,7 +61,7 @@ class MissionControl:
 
 
     def move_rover(self, movement):
-        if self.__current_rover == None:
+        if self.__current_rover is None:
             raise ControlError
         
         current = self.__rovers[self.__current_rover]

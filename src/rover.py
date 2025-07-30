@@ -17,7 +17,7 @@ class Rover:
 
     @property
     def new_position(self):
-        if self.__new_position != None:
+        if self.__new_position is not None:
             return self.__new_position.coordinate
         else:
             return self.position
@@ -30,7 +30,10 @@ class Rover:
 
     @property
     def new_facing(self):
-        return self.__new_position.direction
+        if self.__new_position is not None:
+            return self.__new_position.direction
+        else:
+            return self.facing
     
 
     def cache_rotation(self, direction):
