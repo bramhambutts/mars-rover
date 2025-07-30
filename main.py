@@ -4,7 +4,7 @@ from src.rover import Rover
 
 
 def main():
-    pass
+    raise NotImplementedError
 
 
 if __name__ == "__main__":
