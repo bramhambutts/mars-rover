@@ -54,7 +54,7 @@ class InputParser:
     @staticmethod
     def parse_instruction(text):
         possibles = [inst.value for inst in Instructions]
-        instructables = re.findall(f'[{''.join(possibles)}]', text.upper())
+        instructables = re.findall(f'[{"".join(possibles)}]', text.upper())
 
         total_moves = [Instructions(instruction) for instruction in instructables]
 
