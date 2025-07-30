@@ -30,18 +30,18 @@ def test_RoverPosition_rotate_left():
     test_position = RoverPosition(0, 0, CompassDirections.NORTH)
     expected_position = RoverPosition(0, 0, CompassDirections.WEST)
 
-    test_position.rotate(Instructions.LEFT)
+    new_position = test_position.rotate(Instructions.LEFT)
 
-    assert test_position == expected_position
+    assert new_position == expected_position
 
 
 def test_RoverPosition_rotate_right():
     test_position = RoverPosition(0, 0, CompassDirections.NORTH)
     expected_position = RoverPosition(0, 0, CompassDirections.EAST)
 
-    test_position.rotate(Instructions.RIGHT)
+    new_position = test_position.rotate(Instructions.RIGHT)
 
-    assert test_position == expected_position
+    assert new_position == expected_position
 
 
 def test_RoverPosition_move():

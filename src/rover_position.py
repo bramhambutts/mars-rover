@@ -34,10 +34,12 @@ class RoverPosition:
     def rotate(self, direction):
         direction_list = list(CompassDirections)
         current_index = direction_list.index(self.__direction)
+        new_direction = None
         if direction == Instructions.LEFT:
-            self.__direction = direction_list[current_index-1]
+            new_direction = direction_list[current_index-1]
         elif direction == Instructions.RIGHT:
-            self.__direction = direction_list[(current_index + 1) % len(direction_list)]
+            new_direction = direction_list[(current_index + 1) % len(direction_list)]
+        return RoverPosition(*self.coordinate, new_direction)
     
 
     def move(self):

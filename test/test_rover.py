@@ -24,7 +24,7 @@ class TestRoverBasics:
 
 
     @pytest.mark.context("Caching")
-    @pytest.mark.it("Correctly caches movement")
+    @pytest.mark.it("correctly caches movement")
     def test_Rover_move_is_cached(self):
         test_rover = Rover(RoverPosition(0, 0, CompassDirections.NORTH))
 
@@ -32,6 +32,17 @@ class TestRoverBasics:
 
         assert test_rover.position == (0, 0)
         assert test_rover.new_position == (0, 1)
+    
+
+    @pytest.mark.context("Caching")
+    @pytest.mark.it("correctly caches rotation")
+    def test_Rover_rotate_is_cached(self):
+        test_rover = Rover(RoverPosition(0, 0, CompassDirections.NORTH))
+
+        test_rover.cache_rotation(Instructions.LEFT)
+
+        assert test_rover.facing == CompassDirections.NORTH
+        assert test_rover.new_facing == CompassDirections.WEST
 
 
 @pytest.mark.describe("Testing that Rover movement is correctly undertaken")
@@ -50,7 +61,7 @@ class TestRoverMovement:
         test_rover = Rover(RoverPosition(x_in, y_in, direction))
 
         test_rover.cache_movement()
-        test_rover.confirm_movement()
+        test_rover.confirm_cache()
 
         assert test_rover.position == (x_out, y_out)
 
@@ -68,7 +79,7 @@ class TestRoverMovement:
 
         for step in range(steps):
             test_rover.cache_movement()
-            test_rover.confirm_movement()
+            test_rover.confirm_cache()
         
         assert test_rover.position == (x_out, y_out)
 
@@ -89,7 +100,8 @@ class TestRoverMovement:
     def test_Rover_rotates_once(self, start_direction, rot_direction, end_direction):
         test_rover = Rover(RoverPosition(0, 0, start_direction))
 
-        test_rover.rotate(rot_direction)
+        test_rover.cache_rotation(rot_direction)
+        test_rover.confirm_cache()
 
         assert test_rover.facing == end_direction
 
@@ -111,6 +123,7 @@ class TestRoverMovement:
 
         for rotation in list(rotations):
             rotation = Instructions.LEFT if rotation == 'L' else Instructions.RIGHT
-            test_rover.rotate(rotation)
+            test_rover.cache_rotation(rotation)
+            test_rover.confirm_cache()
         
         assert test_rover.facing == end_direction

@@ -67,10 +67,13 @@ class MissionControl:
         current = self.__rovers[self.__current_rover]
         if movement == Instructions.MOVE:
             current.cache_movement()
-            if current.new_position in self.__plateau:
-                current.confirm_movement()
+        elif movement == Instructions.LEFT or movement == Instructions.RIGHT:
+            current.cache_rotation(movement)
+        
+        if current.new_position in self.__plateau:
+            current.confirm_cache()
         else:
-            current.rotate(movement)
+            current.clear_cached()
 
     
     def switch_rover(self, rover_name):

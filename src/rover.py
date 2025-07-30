@@ -28,16 +28,25 @@ class Rover:
         return self.__position.direction
     
 
-    def rotate(self, direction):
-        self.__position.rotate(direction)
+    @property
+    def new_facing(self):
+        return self.__new_position.direction
+    
+
+    def cache_rotation(self, direction):
+        self.__new_position = self.__position.rotate(direction)
 
     
     def cache_movement(self):
         self.__new_position = self.__position.move()
 
     
-    def confirm_movement(self):
+    def confirm_cache(self):
         self.__position = copy.copy(self.__new_position)
+        self.__new_position = None
+    
+
+    def clear_cached(self):
         self.__new_position = None
     
 
