@@ -32,6 +32,11 @@ class TestRoverBasics:
 
         assert test_rover.position == (0, 0)
         assert test_rover.new_position == (0, 1)
+
+        test_rover.confirm_cache()
+
+        assert test_rover.position == (0, 1)
+        assert test_rover.new_position == None
     
 
     @pytest.mark.context("Caching")
@@ -41,6 +46,47 @@ class TestRoverBasics:
 
         test_rover.cache_rotation(Instructions.LEFT)
 
+        assert test_rover.facing == CompassDirections.NORTH
+        assert test_rover.new_facing == CompassDirections.WEST
+
+        test_rover.confirm_cache()
+
+        assert test_rover.facing == CompassDirections.WEST
+        assert test_rover.new_facing == None
+
+
+    @pytest.mark.context("Caching")
+    @pytest.mark.it("correctly removes cache")
+    def test_Rover_removes_cache(self):
+        test_rover = Rover(RoverPosition(0, 0, CompassDirections.NORTH))
+
+        test_rover.cache_movement()
+
+        assert test_rover.position == (0, 0)
+        assert test_rover.new_position == (0, 1)
+
+        test_rover.clear_cached()
+
+        assert test_rover.position == (0, 0)
+        assert test_rover.new_position == None
+
+    
+    @pytest.mark.context("Caching")
+    @pytest.mark.it("overwrites cache with new movement")
+    def test_Rover_overwrites_cache(self):
+        test_rover = Rover(RoverPosition(0, 0, CompassDirections.NORTH))
+
+        test_rover.cache_movement()
+
+        assert test_rover.position == (0, 0)
+        assert test_rover.new_position == (0, 1)
+        assert test_rover.facing == CompassDirections.NORTH
+        assert test_rover.new_facing == CompassDirections.NORTH
+
+        test_rover.cache_rotation(Instructions.LEFT)
+
+        assert test_rover.position == (0, 0)
+        assert test_rover.new_position == (0, 0)
         assert test_rover.facing == CompassDirections.NORTH
         assert test_rover.new_facing == CompassDirections.WEST
 
